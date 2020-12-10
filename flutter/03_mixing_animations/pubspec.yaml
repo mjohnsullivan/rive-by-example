@@ -1,0 +1,17 @@
+name: mixing_animations
+description: Example of mixing animations together
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rive: ^0.6.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
