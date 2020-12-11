@@ -1,0 +1,18 @@
+name: controlling_mix
+description: Example of how to control the level of mix in animations
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rive:
+    path: ../../../runtimes/rive-flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
