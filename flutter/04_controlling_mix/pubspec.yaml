@@ -9,7 +9,11 @@ dependencies:
   flutter:
     sdk: flutter
   rive:
-    path: ../../../runtimes/rive-flutter
+    # Until the new version of `rive` for Flutter is published, we depend on the Git commit.
+    # See https://github.com/rive-app/rive-flutter/commit/66305cb511f4787c3b6cecb09c15b18bd9c5149d.
+    git:
+      url: https://github.com/rive-app/rive-flutter
+      ref: 66305cb511f4787c3b6cecb09c15b18bd9c5149d
 
 flutter:
   uses-material-design: true

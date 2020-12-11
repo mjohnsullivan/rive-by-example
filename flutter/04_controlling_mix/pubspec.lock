@@ -37,9 +37,11 @@ packages:
   rive:
     dependency: "direct main"
     description:
-      path: "../../../runtimes/rive-flutter"
-      relative: true
-    source: path
+      path: "."
+      ref: "66305cb511f4787c3b6cecb09c15b18bd9c5149d"
+      resolved-ref: "66305cb511f4787c3b6cecb09c15b18bd9c5149d"
+      url: "https://github.com/rive-app/rive-flutter"
+    source: git
     version: "0.6.3"
   sky_engine:
     dependency: transitive
