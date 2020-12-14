@@ -1,5 +1,5 @@
-name: controlling_mix
-description: Example of how to control the level of mix in animations
+name: custom_controller
+description: Example of how to write a basic custom animation controller
 publish_to: 'none'
 version: 1.0.0+1
 environment:
