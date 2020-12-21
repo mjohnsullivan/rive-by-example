@@ -1,6 +1,11 @@
 # Load a Rive File
 
-This example demonstrates how to load a Rive file and display a single frame of animation.
+This example demonstrates how to load a Rive file and display a single frame of animation. To run the example :
+
+```bash
+npm update 
+npm start
+```
 
 Rive's web runtime can be found [here](https://www.npmjs.com/package/rive-canvas), and is available on this [CDN](https://unpkg.com/rive-canvas@0.6.7/rive.js). The web runtime comprises two components: the JS runtime which provides the API with which to instantiate and control animations, and a Wasm engine that drives animations.
 

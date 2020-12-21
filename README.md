@@ -20,4 +20,6 @@ Pure web examples use [express-generator](http://expressjs.com/en/starter/genera
 
 ### Examples
 
-1. [*Load Rive File](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/01_load_animation) - demonstrates how to load a Rive file and show the first frame of an animation.
+1. [*Load Rive File*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/01_load_animation) - demonstrates how to load a Rive file and show the first frame of an animation.
+
+2. [*Looping Animation*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/02_looping_animation) - demonstrates how to continuously play a looping animation.
