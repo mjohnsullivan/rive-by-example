@@ -1,0 +1,17 @@
+name: custom_controller
+description: Example of how to write a basic custom animation controller
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rive: ^0.6.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
