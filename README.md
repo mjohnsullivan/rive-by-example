@@ -13,7 +13,7 @@ Run ```flutter create .``` in a Flutter project directry to generate platform su
 3. [*Mixing Animations*](https://github.com/mjohnsullivan/rive-by-example/tree/main/flutter/f_03_mixing_animations) - Mixing animations together.
 4. [*Controlling Mix*](https://github.com/mjohnsullivan/rive-by-example/tree/main/flutter/f_04_controlling_mix) - Control the level/strength of mix between animations.
 5. [*Custom Controller*](https://github.com/mjohnsullivan/rive-by-example/tree/main/flutter/f_05_custom_controller) - basic custom controller demonstrating how to customize animation behavior.
-
+6. [*Callback Controller*](https://github.com/mjohnsullivan/rive-by-example/tree/main/flutter/f_06_callback_controller) - custom controller demonstrating how to have a callback when an animation completes, and how to replay an animation.
 
 ## Web
 
