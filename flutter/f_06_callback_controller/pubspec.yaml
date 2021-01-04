@@ -1,5 +1,5 @@
-name: custom_controller
-description: Example of how to write a basic custom animation controller
+name: callback_controller
+description: Example of how to handle callbacks when animations end
 publish_to: 'none'
 version: 1.0.0+1
 environment:
