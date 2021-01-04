@@ -28,7 +28,7 @@ Rive({
         const ctx = canvas.getContext('2d');
         const renderer = new rive.CanvasRenderer(ctx);
 
-        // Track the last time the loop was performed
+        // Track the last time the draw function was called
         let lastTime = 0;
 
         // This is the looping function where the animation frames will be
