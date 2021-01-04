@@ -32,4 +32,4 @@ If you'd like to learn step-by-step how the web runtimes work, have a look at th
 
 2. [*Looping Animation*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/02_looping_animation) - demonstrates how to continuously play a looping animation.
 
-3. [*Mixing Animations*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/03_mixing_animation) - demonstrates how to mix different animations together.
+3. [*Mixing Animations*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/03_mixing_animations) - demonstrates how to mix different animations together.
