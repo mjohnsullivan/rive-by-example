@@ -1,10 +1,13 @@
+/// Example kindly provided by https://github.com/dancamdev
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
 void main() => runApp(MyApp());
 
-/// A simple [RiveAnimationController] that runs a callback when the animation has finished;
+/// A simple [RiveAnimationController] that runs a callback when the animation
+/// has finished;
 class CallbackAnimation extends SimpleAnimation {
   CallbackAnimation(
     String animationName, {
@@ -32,15 +35,23 @@ class CallbackAnimation extends SimpleAnimation {
     final endFrame =
         instance.animation.enableWorkArea ? instance.animation.workEnd : 120;
 
-    // if the animation is whitin one frame to the end I'll call the callback
+    // if the animation is within one frame to the end I'll call the callback
     if (currentFrame >= endFrame - 1) {
       isActive = false;
 
       // addPostFrameCallback added to avoid build collision
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        callback();
-      });
+      WidgetsBinding.instance.addPostFrameCallback((_) => callback());
     }
+  }
+
+  /// Resets the animation to its starting state and starts it
+  void resetAndStart(RuntimeArtboard artboard) {
+    // TODO: Move reset logic into linear animation instance
+    instance.time =
+        (instance.animation.enableWorkArea ? instance.animation.workStart : 0)
+                .toDouble() /
+            instance.animation.fps;
+    isActive = true;
   }
 }
 
@@ -89,9 +100,7 @@ class _MyAnimationState extends State<MyAnimation> {
       artboard.addController(
         _animation = CallbackAnimation(
           'Untitled',
-          callback: () {
-            setState(() => _isAnimationComplete = true);
-          },
+          callback: () => setState(() => _isAnimationComplete = true),
         ),
       );
 
@@ -100,8 +109,9 @@ class _MyAnimationState extends State<MyAnimation> {
     }
   }
 
-  void _play() {
-    _animation.isActive = true;
+  void _replay() {
+    _animation.resetAndStart(_artboard);
+    setState(() => _isAnimationComplete = false);
   }
 
   @override
@@ -116,9 +126,9 @@ class _MyAnimationState extends State<MyAnimation> {
         Flexible(
           flex: 1,
           child: RaisedButton(
-            child: Text(_isAnimationComplete ? 'Finished' : 'Running'),
-            color: _isAnimationComplete ? Colors.green : Colors.red,
-            onPressed: _play,
+            child: Text(_isAnimationComplete ? 'Replay' : 'Running'),
+            color: Colors.green,
+            onPressed: _isAnimationComplete ? _replay : null,
           ),
         ),
       ],

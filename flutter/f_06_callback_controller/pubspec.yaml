@@ -8,7 +8,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rive: ^0.6.4
+  rive: ^0.6.5
 
 flutter:
   uses-material-design: true
