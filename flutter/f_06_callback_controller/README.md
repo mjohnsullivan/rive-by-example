@@ -1,6 +1,8 @@
 # Callback Controller
-This example has a simple callback controller that calls a callback function when the animation completes. This works for one shot animations.
+This example has a callback controller that calls a function when an animation completes, ideal for knowing when a one-shot finishes.
 
-Animation controllers should inherit from `RiveAnimationController`. In the case of our custom controller (`CallbackAnimation`), we can re-use some of `SimpleAnimation's` set-up, so we inherit from that.
+The controller also has a ```resetAndStart()``` function that resets the animation to its starting state and replays it.
 
-The math for calculating what frame the animation is currently in depends on data in the controller's `LinearAnimationInstance`, and is adapted from code found in its `advance()` function.
+Animation controllers should inherit from `RiveAnimationController`. In the case of our custom controller (```CallbackAnimation```), we can re-use some of ```SimpleAnimation```'s set-up, so we inherit from that.
+
+The math for calculating what frame the animation is currently in depends on data in the controller's ```LinearAnimationInstance````, and is adapted from code found in ```advance()```.
