@@ -33,3 +33,7 @@ If you'd like to learn step-by-step how the web runtimes work, have a look at th
 2. [*Looping Animation*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/02_looping_animation) - demonstrates how to continuously play a looping animation.
 
 3. [*Mixing Animations*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/03_mixing_animations) - demonstrates how to mix different animations together.
+
+4. *Coming soon ...*
+
+5. [*React Component](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/05_react_component) - sample React component for playing Rive animations

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Rive React Example</title>
+  <script src="https://unpkg.com/rive-canvas@0.6.7/rive.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    .AnimationCanvas {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Renders the page -->
+  <script type="text/babel">
+
+    // Tracks loading the Rive Wasm module
+    let RiveModule = null;
+    let isLoadingModule = false;
+    const callbacks = [];
+
+    // Loads the Rive Wasm module
+    function loadRiveModule(cb) {
+      if (isLoadingModule) {
+        callbacks.push(cb);
+      } else if (RiveModule) {
+        cb(RiveModule);
+      } else {
+        console.log('loading module');
+        isLoadingModule = true;
+
+        Rive({
+          locateFile: (file) => `https://unpkg.com/rive-canvas@0.6.7/${file}`,
+        }).then((module) => {
+          isLoadingModule = false;
+          RiveModule = module;
+          cb(RiveModule);
+          for (let cb of callbacks) {
+            cb(RiveModule);
+          }
+        });
+      }
+    }
+
+    // Loads a Rive file
+    function loadRive(url) {
+      return new Promise((resolve, reject) => {
+        loadRiveModule((rive) => {
+          const { load } = rive;
+          const assetRequest = new Request(url);
+          fetch(assetRequest)
+            .then((response) => {
+              return response.arrayBuffer();
+            })
+            .then((buffer) => {
+              // Load Rive file from buffer.
+              const file = load(new Uint8Array(buffer));
+              resolve({ rive, file });
+            });
+        });
+      });
+    }
+
+    // React component that plays a Rive animation
+    class RiveAnimation extends React.Component {
+
+      constructor(props) {
+        super(props);
+        this.animationContainer = React.createRef();
+
+        this.setCanvas = async (canvas) => {
+          this.animationCanvas = canvas;
+          if (!canvas) {
+            return;
+          }
+
+          const { rive, file } = await loadRive(this.props.file);
+          const { CanvasRenderer, LinearAnimationInstance, Alignment, Fit } = rive;
+          // Get the default artboard.
+          const artboard = this.props.artboard != null
+            ? file.artboard(this.props.artboard)
+            : file.defaultArtboard();
+
+          // Find an animation.
+          const animation = this.props.animation
+            ? artboard.animation(this.props.animation)
+            : artboard.animation('Untitled 1');
+
+          // Make an animation instance (stores time and direction state
+          // for a single animation). Make sure to call .delete on this
+          // object when you are done with it.
+          const animationInstance = new LinearAnimationInstance(animation);
+
+          const ctx = canvas.getContext('2d', { alpha: false });
+          const renderer = new CanvasRenderer(ctx);
+          artboard.advance(0);
+          artboard.draw(renderer);
+
+          let lastTime = 0;
+
+          function drawFrame(time) {
+            // Check if canvas is on screen
+            const rect = canvas.getBoundingClientRect();
+            if (rect.bottom < 0 || rect.top > window.innerHeight) {
+              requestAnimationFrame(drawFrame);
+              return;
+            }
+
+            if (!lastTime) {
+              lastTime = time;
+            }
+            const elapsedSeconds = (time - lastTime) / 1000;
+            lastTime = time;
+
+            animationInstance.advance(elapsedSeconds);
+            animationInstance.apply(artboard, 1.0);
+
+            artboard.advance(elapsedSeconds);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            renderer.align(
+              Fit.cover,
+              Alignment.center,
+              {
+                minX: 0,
+                minY: 0,
+                maxX: canvas.width,
+                maxY: canvas.height,
+              },
+              artboard.bounds
+            );
+            artboard.draw(renderer);
+            ctx.restore();
+            requestAnimationFrame(drawFrame);
+          }
+          requestAnimationFrame(drawFrame);
+        };
+      }
+
+      componentDidMount() {
+        // Resize the canvas to it's parent's size
+        const rect = this.animationContainer.current.getBoundingClientRect();
+        this.animationCanvas.width = rect.width;
+        this.animationCanvas.height = rect.height;
+      }
+
+      render() {
+        return (
+          <div ref={this.animationContainer} className='AnimationCanvas'>
+            <canvas ref={this.setCanvas} />
+          </div>
+        );
+      }
+    }
+
+    // Render the app
+    ReactDOM.render(
+      <div>
+        <h1>Rive React Example</h1>
+        <RiveAnimation file='animations/marty.riv' animation='Animation1' />
+      </div>,
+      document.getElementById('root')
+    );
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
