@@ -1,6 +1,6 @@
 # React Component
 
-This is a simple example demonsatrating how to create a React component that plays a Rive animation. For simplicity and clarity, the page compiles JSX in the browser and should not be used for production.
+This is a simple example demonsatrating how to create a React component that plays a Rive animation. For simplicity and clarity, all the code is contained in ```index.html```. This page compiles JSX in the browser and should not be used for production.
 
 It should be straightforward to reuse/adapt the ```RiveAnimation``` component and the ```loadRiveModule```/```loadRive``` functions in your React app.
 

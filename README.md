@@ -36,4 +36,4 @@ If you'd like to learn step-by-step how the web runtimes work, have a look at th
 
 4. *Coming soon ...*
 
-5. [*React Component](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/05_react_component) - sample React component for playing Rive animations
+5. [*React Component*](https://github.com/mjohnsullivan/rive-by-example/tree/main/web/05_react_component) - sample React component for playing Rive animations
