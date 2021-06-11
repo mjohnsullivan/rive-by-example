@@ -1,7 +1,7 @@
-name: looping_animation
-description: Example of a simple Rive looping animation
-publish_to: 'none'
+name: quick_start
+description: Quick start example for a Rive animation in Flutter
 version: 1.0.0+1
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -12,6 +12,3 @@ dependencies:
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/
