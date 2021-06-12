@@ -1,0 +1,18 @@
+<!--
+To serve this example, use `npx parcel index.html` if you have node/npm installed
+-->
+<html>
+<head></head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script src="https://unpkg.com/rive-js"></script>
+    <script>
+        new rive.Rive({
+            src: 'https://cdn.rive.app/animations/vehicles.riv',
+            canvas: document.getElementById('canvas'),
+            autoplay: true
+        });
+    </script>
+</body>
+</html>

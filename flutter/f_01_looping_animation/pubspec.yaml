@@ -2,13 +2,14 @@ name: looping_animation
 description: Example of a simple Rive looping animation
 publish_to: 'none'
 version: 1.0.0+1
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  rive: ^0.7.16
+  rive: ^0.7.17
 
 flutter:
   uses-material-design: true

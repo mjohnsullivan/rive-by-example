@@ -1,2 +1,7 @@
+# create-react-app stuff
 */node_modules
 */package-lock.json
+
+# parcel stuff
+*/.parcel-cache
+*/dist
